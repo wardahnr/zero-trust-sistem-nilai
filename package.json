@@ -1,0 +1,19 @@
+{
+  "name": "zero-trust-sistem-nilai",
+  "version": "1.0.0",
+  "description": "Praktikum Keamanan Informasi - Zero Trust Security",
+  "main": "gateway/server.js",
+  "scripts": {
+    "seed": "node scripts/seed.js",
+    "gateway": "node gateway/server.js",
+    "nilai": "node services/nilai.js",
+    "transkrip": "node services/transkrip.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
