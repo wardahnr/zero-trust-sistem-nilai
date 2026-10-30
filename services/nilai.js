@@ -48,9 +48,8 @@ async function requestServiceToken() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      clientId: process.env.SERVICE_CLIENT_ID || 'service-nilai',
-      clientSecret:
-        process.env.SERVICE_CLIENT_SECRET || 'secret-service-nilai'
+      clientId: process.env.SERVICE_CLIENT_ID,
+      clientSecret: process.env.SERVICE_CLIENT_SECRET
     })
   });
 

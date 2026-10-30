@@ -2,8 +2,12 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-only-change-me';
-const GATEWAY_SECRET = process.env.GATEWAY_SECRET || 'dev-gateway-secret-change-me';
+const JWT_SECRET = process.env.JWT_SECRET;
+const GATEWAY_SECRET = process.env.GATEWAY_SECRET;
+
+if (!JWT_SECRET || !GATEWAY_SECRET) {
+  throw new Error('JWT_SECRET dan GATEWAY_SECRET wajib diatur di .env');
+}
 
 function signAccessToken(user) {
   return jwt.sign({ sub: String(user.id), role: user.role, username: user.username },

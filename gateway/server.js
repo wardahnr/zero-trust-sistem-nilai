@@ -70,11 +70,10 @@ app.post('/auth/logout', (req,res) => {
 
 app.post('/auth/service', (req,res) => {
   const { clientId, clientSecret } = req.body || {};
-  if (clientId !== (process.env.SERVICE_CLIENT_ID || 'service-nilai') ||
-      clientSecret !== (process.env.SERVICE_CLIENT_SECRET || 'secret-service-nilai')) {
-    audit({subject:clientId || 'unknown', endpoint:req.path, decision:'deny', reason:'Client ID/secret service salah'});
-    return fail(res, 401, 'Client ID atau secret service salah');
-  }
+  if (
+  clientId !== process.env.SERVICE_CLIENT_ID ||
+  clientSecret !== process.env.SERVICE_CLIENT_SECRET
+  ) 
   audit({subject:clientId, endpoint:req.path, decision:'allow', reason:'Kredensial service valid'});
   res.json({accessToken:signServiceToken(), tokenType:'Bearer', expiresInMinutes:Number(process.env.SERVICE_TOKEN_MINUTES || 5)});
 });
